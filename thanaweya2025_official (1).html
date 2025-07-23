@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نتيجة الثانوية العامة 2025</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f2f2f2;
+            color: #000;
+            text-align: center;
+            padding: 20px;
+            direction: rtl;
+        }
+        .container {
+            background-color: #fff;
+            border: 2px solid #2a4d9b;
+            border-radius: 8px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2a4d9b;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #2a4d9b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .subject {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>نتيجة الثانوية العامة 2025</h1>
+        <input type="text" id="seatNumber" placeholder="أدخل رقم الجلوس">
+        <br>
+        <button onclick="showResult()">عرض النتيجة</button>
+        <div id="output" class="result"></div>
+    </div>
+
+    <script>
+        const results = {
+            "1899221": {
+                name: "محمد احمد عبد العزيز عبد الحميد",
+                subjects: {
+                    "اللغة العربية": 73,
+                    "اللغة الإنجليزية": 53,
+                    "الكيمياء": 57,
+                    "الفيزياء": 38,
+                    "الأحياء": 52,
+                    "المجموع الكلي": 273,
+                    "التربية الدينية (غير مضافة)": 13,
+                    "التربية الوطنية (غير مضافة)": 18,
+                    "اللغة الأجنبية الثانية (غير مضافة)": 18
+                }
+            }
+        };
+
+        function showResult() {
+            const seat = document.getElementById("seatNumber").value.trim();
+            const output = document.getElementById("output");
+            if (results[seat]) {
+                const data = results[seat];
+                let html = `<h3>الاسم: ${data.name}</h3>`;
+                for (let [subject, mark] of Object.entries(data.subjects)) {
+                    html += `<div class='subject'>${subject}: ${mark}</div>`;
+                }
+                output.innerHTML = html;
+            } else {
+                output.innerHTML = "<span style='color: red;'>رقم الجلوس غير موجود</span>";
+            }
+        }
+    </script>
+</body>
+</html>
